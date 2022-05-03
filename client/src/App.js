@@ -1,32 +1,35 @@
 import React, { useEffect } from "react";
-import Context from "./context";
-import Loader from "./Loader";
-import Categories from "./components/Categories";
-import Modal from "./Modal/Modal";
-
-const AddTodo = React.lazy(
-  () =>
-    new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(import("./Todo/AddItem"));
-      }, 1000);
-    })
-);
+import CategoriesList from "./components/CategoriesList.js"
+import Context from "./context.js";
 
 function App() {
-  const [categories, setCategories] = React.useState([]);
+  const [categories, setCategories] = React.useState([
+    {id: 0, name: "Драмма", selected: true},
+    {id: 1, name: "Комедия", selected: false},
+    {id: 2, name: "Детективы", selected: false},
+    {id: 3, name: "Ужасы", selected: false},
+  ])
 
   useEffect(() => {
-    document.title = "FILMOTEEKA";
-  }, []);
+    document.title = "FILMOTEEKA"
+  }, [])
+
+  function selectCategory(id) {
+    setCategories(
+      categories.map(category => {
+        category.selected = category.id === id
+        return category
+      })
+    )    
+  }
 
   return (
-    <Context.Provider value={{ changeCategories }}>
+    <Context.Provider value={ {selectFunction: selectCategory} }>
       <div className="wrapper">
-        <h1>React test project</h1>
+        <h1>FILMOTEEKA</h1>
 
         {categories.length ? (
-          <Categories categories={categories} />
+          <CategoriesList categories={categories} />
         ) : (
           <p>No items</p>
         )}
