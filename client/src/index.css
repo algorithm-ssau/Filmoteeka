@@ -1,0 +1,14 @@
+body {
+    background-size: cover;
+    color: wheat;
+}
+
+.top-bar {
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.mainHeader {
+    font-size: 25pt;
+}

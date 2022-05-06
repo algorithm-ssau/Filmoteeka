@@ -1,0 +1,57 @@
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.3);
+    display: flex;
+    justify-content: center;
+    padding-top: 5rem;
+  }
+  
+.modal-body {
+  width: 400px;
+  height: 300px;
+  background: black;
+  border: solid;
+  border-radius: 3rem;
+  padding: 2rem;
+}
+
+.text_boxes {
+  width: 100%;
+	height: 30px;
+	text-align: center;
+  font-size: 12pt;
+	font-family: 'Georgia', serif;
+	color: #42100d;
+	background: #e7af3e;
+	border-radius: 0.5rem;
+	margin-bottom: 30px;
+}
+
+.loginButton {
+  width: 150px;
+  font-size: 15pt;
+  color: wheat;
+  background-color: black;
+  border: solid;
+  border-radius: 30%;
+}
+
+.buttons {
+  width: 150px;
+  font-size: 15pt;
+  color: wheat;
+  background-color: black;
+  border: solid;
+  border-radius: 0.5rem;
+}
+
+.buttonsDiv {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+}

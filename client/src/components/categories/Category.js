@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Context from "../context.js";
+import Context from "./categoriesContext.js";
 
 function Category({category}) {
   const { selectFunction } = useContext(Context);

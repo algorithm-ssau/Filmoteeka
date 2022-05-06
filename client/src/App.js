@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
-import CategoriesList from "./components/CategoriesList.js"
-import Context from "./context.js";
+import CategoriesList from "./components/categories/CategoriesList.js"
+import Context from "./components/categories/categoriesContext.js";
+import LoginModal from "./components/Login/LoginModal.js"
+import background_image from "./background_video.gif"
 
 function App() {
   const [categories, setCategories] = React.useState([
@@ -12,6 +14,7 @@ function App() {
 
   useEffect(() => {
     document.title = "FILMOTEEKA"
+    document.body.style.backgroundImage = `url(${background_image})`;
   }, [])
 
   function selectCategory(id) {
@@ -26,8 +29,11 @@ function App() {
   return (
     <Context.Provider value={ {selectFunction: selectCategory} }>
       <div className="wrapper">
-        <h1>FILMOTEEKA</h1>
-
+        <div  class="top-bar">
+          <h1 class="mainHeader">FILMOTEEKA</h1>
+          <LoginModal/>
+        </div>
+        
         {categories.length ? (
           <CategoriesList categories={categories} />
         ) : (
