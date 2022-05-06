@@ -6,10 +6,10 @@ import background_image from "./background_video.gif"
 
 function App() {
   const [categories, setCategories] = React.useState([
-    {id: 0, name: "Драмма", selected: true},
-    {id: 1, name: "Комедия", selected: false},
-    {id: 2, name: "Детективы", selected: false},
-    {id: 3, name: "Ужасы", selected: false},
+    {id: 0, name: "Драмма", selected: true, averageRaiting: 1},
+    {id: 1, name: "Комедия", selected: false, averageRaiting: 7},
+    {id: 2, name: "Детективы", selected: false, averageRaiting: 5},
+    {id: 3, name: "Ужасы", selected: false, averageRaiting: 10},
   ])
 
   useEffect(() => {
@@ -34,11 +34,13 @@ function App() {
           <LoginModal/>
         </div>
         
-        {categories.length ? (
-          <CategoriesList categories={categories} />
-        ) : (
-          <p>No items</p>
-        )}
+        <div class="categoriesWrapper">
+          {categories.length ? (
+            <CategoriesList categories={categories} />
+          ) : (
+            <p>No items</p>
+          )}
+        </div>
       </div>
     </Context.Provider>
   );

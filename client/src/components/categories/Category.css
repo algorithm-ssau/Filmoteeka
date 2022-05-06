@@ -1,0 +1,16 @@
+.selectingButton {
+    width: 150px;
+    font-size: 15pt;
+    color: wheat;
+    background-color: black;
+    border: solid;
+    border-radius: 0.5rem;
+}
+.activeSelectingButton {
+    width: 150px;
+    font-size: 15pt;
+    color: wheat;
+    background-color: rgb(54, 54, 54);
+    border: solid;
+    border-radius: 0.5rem;
+}

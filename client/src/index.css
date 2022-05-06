@@ -8,6 +8,12 @@ body {
     display: flex;
     justify-content: space-between;
 }
+.categoriesWrapper{
+    border: solid;
+    background: rgb(0, 0, 0);
+    border-radius: 1rem;
+    width: 300px;
+}
 
 .mainHeader {
     font-size: 25pt;
