@@ -1,7 +1,7 @@
 import React from "react";
 import Category from "./Category.js";
 
-function Categories(props) {
+function CategoriesList(props) {
   return (
     <ul>
       {props.categories.map(category => {
@@ -11,4 +11,4 @@ function Categories(props) {
   )
 }
 
-export default Categories;
+export default CategoriesList;

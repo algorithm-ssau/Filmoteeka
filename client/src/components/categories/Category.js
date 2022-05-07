@@ -7,13 +7,12 @@ function Category({category}) {
   return (
     <li>
       <p>Средняя оценка категории: {category.averageRaiting}</p>
-      <button class={category.selected ? "activeSelectingButton" : "selectingButton"} 
+      <button className={category.selected ? "activeSelectingButton" : "selectingButton"} 
         onClick={() => selectFunction(category.id)}>
         {category.name}
       </button>
     </li>
   );
 }
-
 
 export default Category;

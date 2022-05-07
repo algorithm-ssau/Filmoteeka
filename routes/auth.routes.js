@@ -19,14 +19,15 @@ router.post('/register', async (req, res) => {
         })
     }
 })
-    
-router.post('/login', async (req,res) => {
-    const {login, password} = req.body
-        
-        const candidate = await User.findOne({login})
-        if (candidate) {
-            console.log("Пользователь найден")
-        }
+  
+router.post('/login', async (req, res) => {
+    console.log("in /login route")
+    try {
+      const {email, password} = req.body
+      return res.status(400).json({ message: 'Пользователь не найден' })
+    } catch (e) {
+      res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова' })
+    }
 })
     
 module.exports = router

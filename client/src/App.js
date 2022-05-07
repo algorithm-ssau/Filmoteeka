@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
-import CategoriesList from "./components/categories/CategoriesList.js"
 import Context from "./components/categories/categoriesContext.js";
+import CategoriesList from "./components/categories/CategoriesList.js"
 import LoginModal from "./components/Login/LoginModal.js"
 import background_image from "./background_video.gif"
 
@@ -23,18 +23,18 @@ function App() {
         category.selected = category.id === id
         return category
       })
-    )    
+    )
   }
 
   return (
     <Context.Provider value={ {selectFunction: selectCategory} }>
       <div className="wrapper">
-        <div  class="top-bar">
-          <h1 class="mainHeader">FILMOTEEKA</h1>
+        <div  className="top-bar">
+          <h1 className="mainHeader">FILMOTEEKA</h1>
           <LoginModal/>
         </div>
         
-        <div class="categoriesWrapper">
+        <div className="categoriesWrapper">
           {categories.length ? (
             <CategoriesList categories={categories} />
           ) : (

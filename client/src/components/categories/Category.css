@@ -6,6 +6,7 @@
     border: solid;
     border-radius: 0.5rem;
 }
+
 .activeSelectingButton {
     width: 150px;
     font-size: 15pt;

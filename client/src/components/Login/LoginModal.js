@@ -1,40 +1,45 @@
 import React from 'react'
 import './LoginModal.css'
+import {useHttp} from "../../hooks/http.hook.js"
 
-export default class Modal extends React.Component {
-    state = {
-        isOpen: false
-    }
+export default function Modal() {
+    const [isOpen, setIsOpen] = React.useState(false)
+    const {loading, request} = useHttp()
+    
+    const loginHandler = async () => {
+        try {
+          const data = await request('/api/auth/login', 'POST', null)
+        }
+        catch (e) {}
+      }
 
-    render() {
-        return (
-            <React.Fragment>
-                <button class="loginButton" onClick={() => this.setState({isOpen: true}) }>Вход</button>
+    return (
+        <>
+            <button className="loginButton" onClick={() => setIsOpen(true)}>Вход</button>
 
-                {this.state.isOpen && (
-                    <div className='modal'>
-                        <div className='modal-body'>
-                            <h1>Авторизация</h1>
-                            <label>
-                                Имя аккаунта
-                                <input class="text_boxes" type="text"/>
-                            </label>
-                            <label>
-                                Пароль
-                                <input class="text_boxes" type="password"/>
-                            </label>
+            {isOpen && (
+                <div className='modal'>
+                    <div className='modal-body'>
+                        <h1>Авторизация</h1>
+                        <label>
+                            Имя аккаунта
+                            <input className="text_boxes" type="text"/>
+                        </label>
+                        <label>
+                            Пароль
+                            <input className="text_boxes" type="password"/>
+                        </label>
 
 
-                            <div className="buttonsDiv">
-                                <button class="buttons">Вход</button>
-                                <button class="buttons">Регистрация</button>
+                           <div className="buttonsDiv">
+                                <button className="buttons" onClick={loginHandler}>Вход</button>
+                               <button className="buttons">Регистрация</button>
                             </div>
 
-                            <button class="buttons" onClick={() => this.setState({isOpen: false})}>Закрыть</button>
-                        </div>
-                    </div>
-                )}
-            </React.Fragment>
-        )
-    }
+                            <button className="buttons" onClick={() => setIsOpen(false)}>Закрыть</button>
+                      </div>
+                </div>
+            )}
+        </>
+     )
 }
