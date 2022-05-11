@@ -1,12 +1,15 @@
 import React from "react";
 import "./LoginModal.css";
 import { useHttp } from "../../hooks/http.hook.js";
+//import { set } from "express/lib/application";
+
 
 export default function Modal() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [login, setLogin] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const { loading, request } = useHttp();
+  const { loading, request} = useHttp();
+  const [errorMessage, setErrorMessage] = React.useState("");
 
   const changeLoginHandler = (event) => {
     setLogin(event.target.value);
@@ -25,10 +28,10 @@ export default function Modal() {
       if(data.message === "Пользователь найден"){
         setIsOpen(false);
       }
-      else{
-
-      }
-    } catch (e) {}
+      setErrorMessage("");
+    } catch (e) {
+      setErrorMessage("Пользователь не найден")
+    }
   };
 
   const registerHandler = async () => {
@@ -40,11 +43,16 @@ export default function Modal() {
       if (data.message === "Пользователь создан"){
         loginHandler();
       }
-      else{
-        
-      }
-    } catch (e) {}
+      setErrorMessage("");
+    } catch (e) {
+      setErrorMessage("Пользователь с таким ником уже существует")
+    }
   };
+
+  const closeHandler = async () => {
+    setIsOpen(false);
+    setErrorMessage("");
+  }
 
   return (
     <>
@@ -55,6 +63,7 @@ export default function Modal() {
       {isOpen && (
         <div className="modal">
           <div className="modal-body">
+            <div className="auth_error">{errorMessage}</div>
             <h1>Авторизация</h1>
             <label>
               Имя аккаунта
@@ -90,7 +99,8 @@ export default function Modal() {
               </button>
             </div>
 
-            <button className="buttons" onClick={() => setIsOpen(false)}>
+            <button className="buttons" onClick={ closeHandler }
+            >
               Закрыть
             </button>
           </div>

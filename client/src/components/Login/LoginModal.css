@@ -9,14 +9,19 @@
     justify-content: center;
     padding-top: 5rem;
 }
-  
+
 .modal-body {
   width: 400px;
-  height: 300px;
+  height: 350px;
   background: black;
   border: solid;
   border-radius: 3rem;
   padding: 2rem;
+}
+
+.auth_error {
+  font-size: 14pt;
+  color: rgb(218, 16, 5)
 }
 
 .text_boxes {
@@ -26,9 +31,16 @@
   font-size: 12pt;
 	font-family: 'Georgia', serif;
 	color: #42100d;
-	background: #e7af3e;
+	background: white;
 	border-radius: 0.5rem;
 	margin-bottom: 30px;
+}
+
+.buttonsDiv {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
 }
 
 .loginButton {
@@ -48,11 +60,4 @@
   background-color: black;
   border: solid;
   border-radius: 0.5rem;
-}
-
-.buttonsDiv {
-  text-align: center;
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 20px;
 }

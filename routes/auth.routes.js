@@ -34,7 +34,7 @@ router.post("/login", async (req, res) => {
 
     const candidate = await User.findOne({ login, password });
     if (!candidate) {
-      console.log("Пользователь не найден", login);
+      console.log("Пользователь не найден");
       return res.status(400).json({ message: "Пользователь не найден" });
     }
     console.log("Пользователь найден");
