@@ -22,6 +22,12 @@ export default function Modal() {
         login,
         password,
       });
+      if(data.message === "Пользователь найден"){
+        setIsOpen(false);
+      }
+      else{
+
+      }
     } catch (e) {}
   };
 
@@ -31,6 +37,12 @@ export default function Modal() {
         login,
         password,
       });
+      if (data.message === "Пользователь создан"){
+        loginHandler();
+      }
+      else{
+        
+      }
     } catch (e) {}
   };
 
