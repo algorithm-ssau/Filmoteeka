@@ -1,10 +1,8 @@
 import React from "react";
 import "./LoginModal.css";
 import { useHttp } from "../../hooks/http.hook.js";
-//import { set } from "express/lib/application";
 
-
-export default function Modal() {
+export default function LoginModal() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [login, setLogin] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -99,8 +97,7 @@ export default function Modal() {
               </button>
             </div>
 
-            <button className="buttons" onClick={ closeHandler }
-            >
+            <button className="buttons" onClick={ closeHandler } >
               Закрыть
             </button>
           </div>
