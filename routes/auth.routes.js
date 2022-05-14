@@ -38,7 +38,7 @@ router.post("/login", async (req, res) => {
       return res.status(400).json({ message: "Пользователь не найден" });
     }
     console.log("Пользователь найден");
-    res.status(201).json({message: "Пользователь найден"})
+    res.status(201).json({ message: "Пользователь найден" });
   } catch (e) {
     res.status(500).json({ message: "Что-то пошло не так, попробуйте снова" });
   }
