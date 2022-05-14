@@ -19,6 +19,7 @@ export default function Profile() {
       <div id="box1">
         <div>
           <img
+            id="profileAvatar"
             src={profileImage}
             onClick={() => setIsMenuVisible(true)}
             width="70px"

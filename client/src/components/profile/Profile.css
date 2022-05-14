@@ -26,6 +26,10 @@
   background-color: rgb(24, 24, 24);
 }
 
+#profileAvatar {
+  cursor: pointer;
+}
+
 #krest {
   border: none;
   background-color: rgba(0, 0, 0, 0);

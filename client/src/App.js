@@ -4,8 +4,13 @@ import CategoriesList from "./components/categories/CategoriesList.js";
 import LoginModal from "./components/login/LoginModal.js";
 import Profile from "./components/profile/Profile.js";
 import background_image from "./background_video.gif";
+import { useAuth } from "./hooks/auth.hook.js";
+import { AuthContext } from "./AuthContext.js";
 
 function App() {
+  const { login, logout, token, userId } = useAuth();
+  const isAuthenticated = !!token;
+
   const [categories, setCategories] = React.useState([
     { id: 0, name: "Драмма", selected: true, averageRaiting: 1 },
     { id: 1, name: "Комедия", selected: false, averageRaiting: 7 },
@@ -28,23 +33,32 @@ function App() {
   }
 
   return (
-    <Context.Provider value={{ selectFunction: selectCategory }}>
-      <div className="wrapper">
-        <div className="top-bar">
-          <h1 className="mainHeader">FILMOTEEKA</h1>
-          <LoginModal />
-          <Profile />
-        </div>
+    <AuthContext.Provider
+      value={{
+        token,
+        login,
+        logout,
+        userId,
+        isAuthenticated,
+      }}
+    >
+      <Context.Provider value={{ selectFunction: selectCategory }}>
+        <div className="wrapper">
+          <div className="top-bar">
+            <h1 className="mainHeader">FILMOTEEKA</h1>
+            {isAuthenticated ? <Profile /> : <LoginModal />}
+          </div>
 
-        <div className="categoriesWrapper">
-          {categories.length ? (
-            <CategoriesList categories={categories} />
-          ) : (
-            <p>No items</p>
-          )}
+          <div className="categoriesWrapper">
+            {categories.length ? (
+              <CategoriesList categories={categories} />
+            ) : (
+              <p>No items</p>
+            )}
+          </div>
         </div>
-      </div>
-    </Context.Provider>
+      </Context.Provider>
+    </AuthContext.Provider>
   );
 }
 

@@ -22,7 +22,9 @@
   "dependencies": {
     "config": "^3.3.7",
     "express": "^4.17.3",
-    "mongoose": "^6.3.0"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.0",
+    "react-jwt": "^1.1.6"
   },
   "devDependencies": {
     "concurrently": "^7.1.0",

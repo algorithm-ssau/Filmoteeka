@@ -1,6 +1,9 @@
 const { Router } = require("express");
-const router = Router();
 const User = require("../models/user");
+const config = require("config");
+const jwt = require("jsonwebtoken");
+const user = require("../models/user");
+const router = Router();
 
 router.post("/register", async (req, res) => {
   try {
@@ -38,7 +41,16 @@ router.post("/login", async (req, res) => {
       return res.status(400).json({ message: "Пользователь не найден" });
     }
     console.log("Пользователь найден");
-    res.status(201).json({ message: "Пользователь найден" });
+
+    console.log("before creating a token");
+    const token = jwt.sign({ userId: candidate.id }, config.get("jwtSecret"), {
+      expiresIn: "1h",
+    });
+    console.log("token created");
+
+    res
+      .status(201)
+      .json({ message: "Пользователь найден", userId: user.id, token: token });
   } catch (e) {
     res.status(500).json({ message: "Что-то пошло не так, попробуйте снова" });
   }

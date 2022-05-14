@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./LoginModal.css";
+import { AuthContext } from "../../AuthContext.js";
 import { useHttp } from "../../hooks/http.hook.js";
 
 export default function LoginModal() {
+  const auth = useContext(AuthContext);
+
   const [isOpen, setIsOpen] = React.useState(false);
   const [login, setLogin] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const { loading, request} = useHttp();
+  const { loading, request } = useHttp();
   const [errorMessage, setErrorMessage] = React.useState("");
 
   const changeLoginHandler = (event) => {
@@ -23,12 +26,16 @@ export default function LoginModal() {
         login,
         password,
       });
-      if(data.message === "Пользователь найден"){
+      console.log("after server");
+      if (data.message === "Пользователь найден") {
         setIsOpen(false);
+        auth.login(data.token, data.userId);
+      } else {
+        setErrorMessage(data.message);
       }
       setErrorMessage("");
     } catch (e) {
-      setErrorMessage("Пользователь не найден")
+      setErrorMessage("Ошибка сервера при входе");
     }
   };
 
@@ -38,19 +45,21 @@ export default function LoginModal() {
         login,
         password,
       });
-      if (data.message === "Пользователь создан"){
+      if (data.message === "Пользователь создан") {
         loginHandler();
+      } else {
+        setErrorMessage(data.message);
       }
       setErrorMessage("");
     } catch (e) {
-      setErrorMessage("Пользователь с таким ником уже существует")
+      setErrorMessage("Ошибка сервера при регистрации");
     }
   };
 
   const closeHandler = async () => {
     setIsOpen(false);
     setErrorMessage("");
-  }
+  };
 
   return (
     <>
@@ -97,7 +106,7 @@ export default function LoginModal() {
               </button>
             </div>
 
-            <button className="buttons" onClick={ closeHandler } >
+            <button className="buttons" onClick={closeHandler}>
               Закрыть
             </button>
           </div>
