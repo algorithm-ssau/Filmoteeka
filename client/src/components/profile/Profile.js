@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Profile.css";
 import profileImage from "./Profile.png";
+import { AuthContext } from "../../AuthContext.js";
 
 export default function Profile() {
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
+  const auth = useContext(AuthContext);
 
   const stls = {
     img: {
@@ -12,6 +14,11 @@ export default function Profile() {
     menu: {
       display: isMenuVisible ? "block" : "none",
     },
+  };
+
+  const logoutHandler = () => {
+    console.log("qwe");
+    auth.logout();
   };
 
   return (
@@ -35,7 +42,7 @@ export default function Profile() {
             <li>Work</li>
             <li>About</li>
             <li>Blog</li>
-            <li>Contact</li>
+            <li onClick={logoutHandler}>Exit</li>
           </ul>
         </div>
       </div>

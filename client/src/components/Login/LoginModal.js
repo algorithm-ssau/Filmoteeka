@@ -26,7 +26,6 @@ export default function LoginModal() {
         login,
         password,
       });
-      console.log("after server");
       if (data.message === "Пользователь найден") {
         setIsOpen(false);
         auth.login(data.token, data.userId);
