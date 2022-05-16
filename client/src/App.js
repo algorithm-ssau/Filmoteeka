@@ -6,6 +6,7 @@ import Profile from "./components/profile/Profile.js";
 import background_image from "./background_video.gif";
 import { useAuth } from "./hooks/auth.hook.js";
 import { AuthContext } from "./AuthContext.js";
+import {Router} from "react-router-dom";
 
 function App() {
   const { login, logout, token, userId } = useAuth();
