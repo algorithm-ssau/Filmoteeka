@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import "./Profile.css";
+import { NavLink } from "react-router-dom"
 import profileImage from "./Profile.png";
 import { AuthContext } from "../../AuthContext.js";
+import "./Profile.css";
 
 export default function Profile() {
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
@@ -40,7 +41,7 @@ export default function Profile() {
             <li onClick={() => setIsMenuVisible(false)} id="krest">
               ×
             </li>
-            <li>Настройки</li>
+            <li><NavLink to="/profile">Настройки</NavLink></li>
             <li onClick={logoutHandler}>Выход</li>
           </ul>
         </div>
