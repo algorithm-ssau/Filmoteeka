@@ -8,16 +8,13 @@ const router = Router();
 router.post("/register", async (req, res) => {
   try {
     const { login, password } = req.body;
-    console.log("Body:", req.body);
 
     const candidate = await User.findOne({ login });
     if (candidate) {
-      console.log("Пользователь с таким ником уже существует", login);
       return res.status(400).json({
-        message: "Пользователь с таким ником уже существует",
+        message: "Пользователь с таким именем уже существует",
       });
     }
-    //const hashedPassword = await bcrypt.hash(password, 12);
     const user = new User({ login, password });
 
     await user.save();
@@ -25,7 +22,7 @@ router.post("/register", async (req, res) => {
     res.status(201).json({ message: "Пользователь создан" });
   } catch (error) {
     res.status(500).json({
-      message: "Что то пошло не так",
+      message: "Ошибка сервера при регистрации",
     });
   }
 });
@@ -33,26 +30,26 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
     const { login, password } = req.body;
-    console.log("Body:", req.body);
 
-    const candidate = await User.findOne({ login, password });
+    var candidate = await User.findOne({login});
     if (!candidate) {
-      console.log("Пользователь не найден");
-      return res.status(400).json({ message: "Пользователь не найден" });
+      return res.status(400).json({ message: "Пользователя с таким именем не существует" });
     }
-    console.log("Пользователь найден");
 
-    console.log("before creating a token");
+    candidate = await User.findOne({ login, password });
+    if (!candidate) {
+      return res.status(400).json({ message: "Неверный пароль" });
+    }
+
     const token = jwt.sign({ userId: candidate.id }, config.get("jwtSecret"), {
       expiresIn: "1h",
     });
-    console.log("token created");
 
     res
       .status(201)
       .json({ message: "Пользователь найден", userId: user.id, token: token });
   } catch (e) {
-    res.status(500).json({ message: "Что-то пошло не так, попробуйте снова" });
+    res.status(500).json({ message: "Ошибка сервера при входе" });
   }
 });
 

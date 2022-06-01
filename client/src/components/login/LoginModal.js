@@ -34,7 +34,7 @@ export default function LoginModal() {
       }
       setErrorMessage("");
     } catch (e) {
-      setErrorMessage("Ошибка сервера при входе");
+      setErrorMessage(e.message);
     }
   };
 
@@ -51,7 +51,7 @@ export default function LoginModal() {
       }
       setErrorMessage("");
     } catch (e) {
-      setErrorMessage("Ошибка сервера при регистрации");
+      setErrorMessage(e.message);
     }
   };
 

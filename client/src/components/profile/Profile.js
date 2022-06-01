@@ -40,10 +40,8 @@ export default function Profile() {
             <li onClick={() => setIsMenuVisible(false)} id="krest">
               ×
             </li>
-            <li>Work</li>
-            <li>About</li>
-            <li>Blog</li>
-            <li onClick={logoutHandler}>Exit</li>
+            <li>Настройки</li>
+            <li onClick={logoutHandler}>Выход</li>
           </ul>
         </div>
       </div>
