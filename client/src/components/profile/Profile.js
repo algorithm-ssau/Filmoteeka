@@ -32,6 +32,7 @@ export default function Profile() {
             width="70px"
             height="70px"
             style={stls.img}
+            alt="Аватар"
           />
         </div>
         <div className="menu-main" style={stls.menu}>
