@@ -1,7 +1,28 @@
 .menu-main {
   width: 170px;
-  position: relative;
   bottom: 10px;
+}
+
+.menu-main ul {
+  margin: 0;
+  padding: 0;
+}
+
+.menu-main li {
+  list-style-type: none;
+  font-size: 20pt;
+  height: 45px;
+  line-height: 45px;
+  cursor: pointer;
+  text-align: center;
+  border: solid;
+  border-radius: 1rem;
+  margin-bottom: 4px;
+}
+
+.menu-main li:hover {
+  color: rgb(137, 207, 207);
+  background-color: rgb(24, 24, 24);
 }
 
 a:link{
@@ -22,28 +43,6 @@ a:active{
 a:active{
   text-decoration: none;
   color: wheat;
-}
-
-.menu-main li {
-  list-style-type: none;
-  font-size: 20pt;
-  height: 45px;
-  line-height: 45px;
-  cursor: pointer;
-  text-align: center;
-  border: solid;
-  border-radius: 1rem;
-  margin-bottom: 4px;
-}
-
-.menu-main ul {
-  margin: 0;
-  padding: 0;
-}
-
-.menu-main li:hover {
-  color: rgb(137, 207, 207);
-  background-color: rgb(24, 24, 24);
 }
 
 #profileAvatar {

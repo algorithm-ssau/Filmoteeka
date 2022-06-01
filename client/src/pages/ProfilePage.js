@@ -1,9 +1,11 @@
 import React from "react"
+import NavBar from "../components/navbar/NavBar.js"
 
 export const ProfilePage = () => {
     return (
-        <div>
-            <h1>Profile page</h1>
-        </div>
+        <>
+            <NavBar />
+            <h1>Profile settings page</h1>
+        </>
     )
 }

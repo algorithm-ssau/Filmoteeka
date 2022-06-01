@@ -2,10 +2,9 @@ import { React, useState } from "react"
 import { useAuth } from "../hooks/auth.hook.js";
 import { AuthContext } from "../AuthContext.js";
 
+import NavBar from "../components/navbar/NavBar.js";
 import CategoriesContext from "../components/categories/categoriesContext.js";
 import CategoriesList from "../components/categories/CategoriesList.js";
-import LoginModal from "../components/login/LoginModal.js";
-import Profile from "../components/profile/Profile.js";
 
 export const MainPage = () => {
     const { login, logout, token, userId } = useAuth();
@@ -38,20 +37,17 @@ export const MainPage = () => {
             }}
         >
             <CategoriesContext.Provider value={{ selectFunction: selectCategory }}>
-                <div className="wrapper">
-                <div className="top-bar">
-                    <h1 className="mainHeader">FILMOTEEKA</h1>
-                    {isAuthenticated ? <Profile /> : <LoginModal />}
-                </div>
+                <>
+                    <NavBar />
 
-                <div className="categoriesWrapper">
-                    {categories.length ? (
-                    <CategoriesList categories={categories} />
-                    ) : (
-                    <p>No items</p>
-                    )}
-                </div>
-                </div>
+                    <div className="categoriesWrapper">
+                        {categories.length ? (
+                        <CategoriesList categories={categories} />
+                        ) : (
+                        <p>No items</p>
+                        )}
+                    </div>
+                </>
             </CategoriesContext.Provider>
         </AuthContext.Provider>
     )
