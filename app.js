@@ -10,6 +10,7 @@ const mongoUri = config.get("mongoUri");
 
 app.use(express.json({ extended: true }));
 app.use("/api/auth", require("./routes/auth.routes"));
+//app.use("/api/films", require("./routes/film.routes"))
 
 async function start() {
   try {

@@ -1,15 +1,15 @@
 import { React, useState } from "react"
-import { useAuth } from "../hooks/auth.hook.js";
-import { AuthContext } from "../AuthContext.js";
+import { useAuth } from "../hooks/auth.hook.js"
+import { AuthContext } from "../AuthContext.js"
 
-import NavBar from "../components/navbar/NavBar.js";
-import CategoriesContext from "../components/categories/categoriesContext.js";
-import CategoriesList from "../components/categories/CategoriesList.js";
+import NavBar from "../components/navbar/NavBar.js"
+import CategoriesContext from "../components/categories/categoriesContext.js"
+import CategoriesList from "../components/categories/CategoriesList.js"
 
 export const MainPage = () => {
-    const { login, logout, token, userId } = useAuth();
-    const isAuthenticated = !!token;
-
+    const { login, logout, token, userId } = useAuth()
+    const isAuthenticated = !!token
+    
     const [categories, setCategories] = useState([
         { id: 0, name: "Драмма", selected: true, averageRaiting: 1 },
         { id: 1, name: "Комедия", selected: false, averageRaiting: 7 },
@@ -20,8 +20,8 @@ export const MainPage = () => {
     function selectCategory(id) {
         setCategories(
             categories.map((category) => {
-                category.selected = category.id === id;
-                return category;
+                category.selected = category.id === id
+                return category
             })
         );
     }

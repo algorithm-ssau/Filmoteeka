@@ -1,5 +1,6 @@
 import React from "react"
 import { useAuth } from "../../hooks/auth.hook.js";
+import { NavLink } from "react-router-dom";
 
 import Profile from "../profile/Profile.js";
 import LoginModal from "../login/LoginModal.js";
@@ -12,7 +13,9 @@ export default function NavBar() {
     return (        
         <div className="top-bar">
             <div>
-                <h1 className="mainHeader">FILMOTEEKA</h1>
+                <h1 className="mainHeader">
+                    <NavLink to="/">FILMOTEEKA</NavLink>
+                </h1>
             </div>
             <div>
                 { isAuthenticated ? <Profile /> : <LoginModal /> }
