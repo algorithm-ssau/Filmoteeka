@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
-import { NavLink } from "react-router-dom"
-import { AuthContext } from "../../AuthContext.js";
-import "./Profile.css";
-import profileImage from "./Profile.png";
+import React, { useContext } from "react"
+import { NavLink, useNavigate } from "react-router-dom"
+import { AuthContext } from "../../AuthContext.js"
+
+import "./Profile.css"
+import profileImage from "./Profile.png"
 
 export default function Profile() {
-  const [isMenuVisible, setIsMenuVisible] = React.useState(false);
-  const auth = useContext(AuthContext);
+  const [isMenuVisible, setIsMenuVisible] = React.useState(false)
+  const auth = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const stls = {
     img: {
@@ -15,11 +17,12 @@ export default function Profile() {
     menu: {
       display: isMenuVisible ? "block" : "none",
     },
-  };
+  }
 
   const logoutHandler = () => {    
-    auth.logout();
-  };
+    auth.logout()
+    navigate("/")
+  }
 
   return (
     <>
@@ -45,5 +48,5 @@ export default function Profile() {
         </ul>
       </div>
     </>
-  );
+  )
 }
