@@ -28,7 +28,7 @@ function App() {
 
           <Route path="/profile" exact element={<ProfilePage />}></Route>
 
-          <Route path="/film/:id" element={<FilmPage />}></Route>
+          <Route path="/film" element={<FilmPage />}></Route>
         </Routes>
       </Router>
     );
@@ -38,7 +38,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<MainPage />}></Route>
 
-          <Route path="/film/:id" element={<FilmPage />}></Route>
+          <Route path="/film" element={<FilmPage />}></Route>
         </Routes>
       </Router>
     );

@@ -1,45 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 import { useHttp } from "../hooks/http.hook.js";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/auth.hook.js";
+import { AuthContext } from "../AuthContext.js";
 import NavBar from "../components/navbar/NavBar.js";
 
+import "./FilmPage.css";
+
 export const FilmPage = () => {
-  const navigate = useNavigate();
+  const { login, logout, token, userId } = useAuth();
+  const isAuthenticated = !!token;
+
   const { request } = useHttp();
-  const filmId = useParams().id;
+  const navigate = useNavigate();
 
-  const [films, setFilms] = React.useState([
-    { id: 1, name: "zxc" },
-    { id: 2, name: "qwe" },
-  ]);
+  const [film, setFilm] = useState({
+    name: "some film name",
+    description: "some description",
+    imageUrl: "",
+    avgRate: 0,
+    genre: "genre 1",
+    comments: [],
+  });
 
-  const getAllFilms = async () => {
-    const data = await request("/api/film/all", "POST");
-    setFilms(data);
-  };
+  const getFilmInfoByName = async () => {
+    const data = await request(
+      "/api/film/byName",
+      "GET",
+      { name: "some film name in the db" },
+      { Authorization: `Bearer: ${token}` }
+    );
 
-  const makeFilmRequest = async () => {
-    //const data = await request('/api/film/', 'POST', null, { Authorization: `Bearer: ${token}` })
-    //navigate(`/film/${data.film._id}`)
+    setFilm(data.filmInfo);
   };
 
   return (
-    <>
+    <AuthContext.Provider
+      value={{
+        token,
+        login,
+        logout,
+        userId,
+        isAuthenticated,
+      }}
+    >
       <NavBar />
-
-      <h1>Film Page</h1>
-      <ul>
-        {films.map((f) => {
-          return (
-            <>
-              <h1>{f.name}</h1>
-              <hr />
-            </>
-          );
-        })}
-      </ul>
-
-      <button onClick={getAllFilms}>Get all films</button>
-    </>
+      <div className="filmInfoWrapper">
+        <h1>{film.name}</h1>
+        <img src={film.imageUrl} alt="Постер фильма" />
+        <p>Жанр: {film.genre}</p>
+        <p>Средняя оценка: {film.avgRate}</p>
+        <hr />
+        <p>{film.description}</p>
+        <button onClick={getFilmInfoByName}>Get test film info</button>
+      </div>
+    </AuthContext.Provider>
   );
 };

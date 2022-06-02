@@ -12,11 +12,20 @@ export const MainPage = () => {
   const isAuthenticated = !!token;
 
   const [categories, setCategories] = useState([
-    { id: 0, name: "Драмма", selected: true, averageRaiting: 1 },
+    { id: 0, name: "Криминал", selected: true, averageRaiting: 1 },
     { id: 1, name: "Комедия", selected: false, averageRaiting: 7 },
-    { id: 2, name: "Детективы", selected: false, averageRaiting: 5 },
-    { id: 3, name: "Ужасы", selected: false, averageRaiting: 10 },
+    { id: 2, name: "Боевик", selected: false, averageRaiting: 5 },
   ]);
+
+  /*
+  const getFilms = async () => {
+    const data = await request("/api/films/byGenre", "POST", {
+      genre: "Комедии",
+    });
+
+    console.log(data.message);
+  };
+  */
 
   function selectCategory(id) {
     setCategories(

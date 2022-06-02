@@ -7,28 +7,45 @@ const filmSchema = new Schema({
     unique: true,
   },
 
+  description: {
+    type: String,
+    required: true,
+  },
+
+  imageUrl: {
+    type: String,
+    required: true,
+  },
+
   avgRate: {
     type: Number,
     required: true,
   },
 
-  comments: [{
+  genre: {
+    type: String,
+    required: true,
+  },
+
+  comments: [
+    {
       author: {
-          type: Types.ObjectId,
-          ref: 'User',
+        type: Types.ObjectId,
+        ref: "User",
       },
       title: {
-          type: String,
-          required: true,
+        type: String,
+        required: true,
       },
       body: {
-          type: String,
-          required: true,
+        type: String,
+        required: true,
       },
       rate: {
-          type: Number,
-      }
-  }]
+        type: Number,
+      },
+    },
+  ],
 });
 
-module.exports = model("User", filmSchema);
+module.exports = model("Film", filmSchema);

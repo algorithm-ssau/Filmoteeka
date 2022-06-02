@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const User = require("../models/user");
+const User = require("../models/User");
 const config = require("config");
 const jwt = require("jsonwebtoken");
 
@@ -10,6 +10,7 @@ router.post("/register", async (req, res) => {
     const { login, password } = req.body;
 
     const candidate = await User.findOne({ login });
+
     if (candidate) {
       return res.status(400).json({
         message: "Пользователь с таким именем уже существует",
@@ -47,13 +48,11 @@ router.post("/login", async (req, res) => {
       expiresIn: "1h",
     });
 
-    res
-      .status(201)
-      .json({
-        message: "Пользователь найден",
-        userId: candidate.id,
-        token: token,
-      });
+    res.status(201).json({
+      message: "Пользователь найден",
+      userId: candidate.id,
+      token: token,
+    });
   } catch (e) {
     res.status(500).json({ message: "Ошибка сервера при входе" });
   }
