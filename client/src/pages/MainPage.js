@@ -5,9 +5,10 @@ import { AuthContext } from "../AuthContext.js"
 import NavBar from "../components/navbar/NavBar.js"
 import CategoriesContext from "../components/categories/categoriesContext.js"
 import CategoriesList from "../components/categories/CategoriesList.js"
+import { Loader } from "../components/loader/Loader.js"
 
 export const MainPage = () => {
-    const { login, logout, token, userId } = useAuth()
+    const { login, logout, token, userId, ready } = useAuth()
     const isAuthenticated = !!token
     
     const [categories, setCategories] = useState([
@@ -24,6 +25,10 @@ export const MainPage = () => {
                 return category
             })
         );
+    }
+
+    if (!ready) {
+        return <Loader />
     }
 
     return (

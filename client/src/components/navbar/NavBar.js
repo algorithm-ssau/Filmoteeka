@@ -1,14 +1,13 @@
-import React from "react"
-import { useAuth } from "../../hooks/auth.hook.js";
-import { NavLink } from "react-router-dom";
+import { React, useContext } from "react"
+import { AuthContext } from "../../AuthContext.js"
+import { NavLink } from "react-router-dom"
 
-import Profile from "../profile/Profile.js";
-import LoginModal from "../login/LoginModal.js";
+import Profile from "../profile/Profile.js"
+import LoginModal from "../login/LoginModal.js"
 import './NavBar.css'
 
 export default function NavBar() {
-    const { token } = useAuth();
-    const isAuthenticated = !!token;
+    const auth = useContext(AuthContext)
 
     return (        
         <div className="top-bar">
@@ -18,7 +17,7 @@ export default function NavBar() {
                 </h1>
             </div>
             <div>
-                { isAuthenticated ? <Profile /> : <LoginModal /> }
+                { auth.isAuthenticated ? <Profile /> : <LoginModal /> }
             </div>
         </div>
     )
