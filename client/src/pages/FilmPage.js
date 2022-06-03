@@ -29,7 +29,6 @@ export const FilmPage = () => {
   }, []);
 
   const getFilmInfoByName = async () => {
-    console.log(`selected film name: ${selectedFilmName}`);
     const data = await request(
       "/api/films/byName",
       "POST",

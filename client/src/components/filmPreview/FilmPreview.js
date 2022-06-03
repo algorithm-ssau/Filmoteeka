@@ -20,7 +20,7 @@ function FilmPreview({ filmInfo }) {
       <img
         width="100px"
         height="100px"
-        src={filmInfo.imageUri}
+        src={filmInfo.imageUrl}
         alt="Постер фильма"
       />
       <hr />
