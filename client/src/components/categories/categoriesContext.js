@@ -1,5 +1,7 @@
 import React from "react";
 
-const Context = React.createContext()
+const CategoriesContext = React.createContext({
+  sleectingFunction: () => {},
+});
 
-export default Context;
+export default CategoriesContext;

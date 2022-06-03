@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import Context from "./categoriesContext.js";
+import CategoriesContext from "./categoriesContext.js";
 import "./Category.css";
 
 function Category({ category }) {
-  const { selectFunction } = useContext(Context);
+  const { selectFunction } = useContext(CategoriesContext);
   return (
     <li>
       <button

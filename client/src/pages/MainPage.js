@@ -6,6 +6,7 @@ import { AuthContext } from "../AuthContext.js";
 import NavBar from "../components/navbar/NavBar.js";
 import CategoriesContext from "../components/categories/categoriesContext.js";
 import CategoriesList from "../components/categories/CategoriesList.js";
+import FilmPreview from "../components/filmPreview/FilmPreview.js";
 import { Loader } from "../components/loader/Loader.js";
 
 import "./MainPage.css";
@@ -16,19 +17,18 @@ export const MainPage = () => {
   const { request } = useHttp();
 
   const [categories, setCategories] = useState([
-    { id: 0, name: "Криминал", selected: true },
     { id: 1, name: "Комедия", selected: false },
     { id: 2, name: "Боевик", selected: false },
     { id: 3, name: "Фантастика", selected: false },
     { id: 4, name: "Детектив", selected: false },
     { id: 5, name: "Приключения", selected: false },
     { id: 6, name: "Ужасы", selected: false },
-    { id: 8, name: "Научная фантастика", selected: false },
-    { id: 9, name: "Драма", selected: false },
-    { id: 10, name: "Мультфильм", selected: false },
-    { id: 11, name: "Триллер", selected: false },
-    { id: 12, name: "История", selected: false },
-    { id: 13, name: "Вестерн", selected: false },
+    { id: 7, name: "Научная Фантастика", selected: false },
+    { id: 8, name: "Драма", selected: false },
+    { id: 9, name: "Мультфильм", selected: false },
+    { id: 10, name: "Триллер", selected: false },
+    { id: 11, name: "История", selected: false },
+    { id: 12, name: "Вестерн", selected: false },
   ]);
 
   const [films, setFilms] = useState([]);
@@ -83,12 +83,7 @@ export const MainPage = () => {
 
           <div className="filmsWrapper">
             {films.map((film) => {
-              return (
-                <>
-                  {film.name}
-                  <hr />
-                </>
-              );
+              return <FilmPreview filmInfo={film} />;
             })}
           </div>
         </>

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { React, useState, useContext, useEffect } from "react";
 import { useHttp } from "../hooks/http.hook.js";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/auth.hook.js";
 import { AuthContext } from "../AuthContext.js";
+import SelectedFilmContext from "../components/filmPreview/selectedFilmContext.js";
 import NavBar from "../components/navbar/NavBar.js";
 
 import "./FilmPage.css";
@@ -12,26 +12,32 @@ export const FilmPage = () => {
   const isAuthenticated = !!token;
 
   const { request } = useHttp();
-  const navigate = useNavigate();
 
+  const { selectedFilmName, setSelectedFilmName } =
+    useContext(SelectedFilmContext);
   const [film, setFilm] = useState({
     name: "some film name",
     description: "some description",
     imageUrl: "",
     avgRate: 0,
-    genre: "genre 1",
+    genre: "some genre",
     comments: [],
   });
 
+  useEffect(() => {
+    getFilmInfoByName(selectedFilmName);
+  }, []);
+
   const getFilmInfoByName = async () => {
+    console.log(`selected film name: ${selectedFilmName}`);
     const data = await request(
-      "/api/film/byName",
+      "/api/films/byName",
       "POST",
-      { name: "some film name in the db" },
-      { Authorization: `Bearer: ${token}` }
+      { name: selectedFilmName }
+      //{ Authorization: `Bearer: ${token}` }
     );
 
-    setFilm(data.filmInfo);
+    setFilm(JSON.parse(data.filmInfo));
   };
 
   return (
@@ -47,12 +53,16 @@ export const FilmPage = () => {
       <NavBar />
       <div className="filmInfoWrapper">
         <h1>{film.name}</h1>
-        <img src={film.imageUrl} alt="Постер фильма" />
+        <img
+          src={film.imageUrl}
+          width="300px"
+          height="300px"
+          alt="Постер фильма"
+        />
         <p>Жанр: {film.genre}</p>
         <p>Средняя оценка: {film.avgRate}</p>
         <hr />
         <p>{film.description}</p>
-        <button onClick={getFilmInfoByName}>Get test film info</button>
       </div>
     </AuthContext.Provider>
   );

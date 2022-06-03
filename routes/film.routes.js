@@ -19,9 +19,11 @@ router.post("/byGenre", async (req, res) => {
   }
 });
 
-router.get("/byName", auth, async (req, res) => {
+//router.get("/byName", auth, async (req, res) => {
+router.post("/byName", async (req, res) => {
   try {
     const { name } = req.body;
+    console.log(`searching for film by name: ${name}`);
 
     var film = await Film.findOne({ name: name });
 
@@ -31,7 +33,10 @@ router.get("/byName", auth, async (req, res) => {
         .json({ message: "Не найдено фильма с таким названием" });
     }
 
-    res.status(201).json({ message: "Фильм успешно найден", filmInfo: film });
+    res.status(201).json({
+      message: "Фильм успешно найден",
+      filmInfo: JSON.stringify(film),
+    });
   } catch (e) {
     res
       .status(500)
