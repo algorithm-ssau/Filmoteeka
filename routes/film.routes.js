@@ -10,8 +10,8 @@ router.post("/byGenre", async (req, res) => {
     const { genre } = req.body;
 
     const films = await Film.find({ genre: genre });
-    const msg = `Найдено ${films.length} фильмов`;
-    res.status(200).json({ message: msg });
+    const msg = `Найдено ${films.length} фильма(ов)`;
+    res.status(200).json({ message: msg, films: JSON.stringify(films) });
   } catch (e) {
     res
       .status(500)

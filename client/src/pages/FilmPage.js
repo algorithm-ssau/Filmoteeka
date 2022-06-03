@@ -26,7 +26,7 @@ export const FilmPage = () => {
   const getFilmInfoByName = async () => {
     const data = await request(
       "/api/film/byName",
-      "GET",
+      "POST",
       { name: "some film name in the db" },
       { Authorization: `Bearer: ${token}` }
     );

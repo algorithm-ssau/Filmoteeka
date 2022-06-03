@@ -1,21 +1,23 @@
 .selectingButton {
-    width: 150px;
-    font-size: 15pt;
-    color: wheat;
-    background-color: black;
-    border: solid;
-    border-radius: 0.5rem;
+  width: 150px;
+  margin-bottom: 20px;
+  font-size: 15pt;
+  color: wheat;
+  background-color: black;
+  border: solid;
+  border-radius: 0.5rem;
 }
 
 .activeSelectingButton {
-    width: 150px;
-    font-size: 15pt;
-    color: wheat;
-    background-color: rgb(54, 54, 54);
-    border: solid;
-    border-radius: 0.5rem;
+  width: 150px;
+  margin-bottom: 20px;
+  font-size: 15pt;
+  color: wheat;
+  background-color: rgb(54, 54, 54);
+  border: solid;
+  border-radius: 0.5rem;
 }
 
-li{
-    list-style-type: none;
+li {
+  list-style-type: none;
 }

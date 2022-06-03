@@ -1,4 +1,5 @@
 import { React, useState } from "react";
+import { useHttp } from "../hooks/http.hook.js";
 import { useAuth } from "../hooks/auth.hook.js";
 import { AuthContext } from "../AuthContext.js";
 
@@ -7,30 +8,48 @@ import CategoriesContext from "../components/categories/categoriesContext.js";
 import CategoriesList from "../components/categories/CategoriesList.js";
 import { Loader } from "../components/loader/Loader.js";
 
+import "./MainPage.css";
+
 export const MainPage = () => {
   const { login, logout, token, userId, ready } = useAuth();
   const isAuthenticated = !!token;
+  const { request } = useHttp();
 
   const [categories, setCategories] = useState([
-    { id: 0, name: "Криминал", selected: true, averageRaiting: 1 },
-    { id: 1, name: "Комедия", selected: false, averageRaiting: 7 },
-    { id: 2, name: "Боевик", selected: false, averageRaiting: 5 },
+    { id: 0, name: "Криминал", selected: true },
+    { id: 1, name: "Комедия", selected: false },
+    { id: 2, name: "Боевик", selected: false },
+    { id: 3, name: "Фантастика", selected: false },
+    { id: 4, name: "Детектив", selected: false },
+    { id: 5, name: "Приключения", selected: false },
+    { id: 6, name: "Ужасы", selected: false },
+    { id: 8, name: "Научная фантастика", selected: false },
+    { id: 9, name: "Драма", selected: false },
+    { id: 10, name: "Мультфильм", selected: false },
+    { id: 11, name: "Триллер", selected: false },
+    { id: 12, name: "История", selected: false },
+    { id: 13, name: "Вестерн", selected: false },
   ]);
 
-  /*
-  const getFilms = async () => {
+  const [films, setFilms] = useState([]);
+
+  const getFilms = async (genre) => {
     const data = await request("/api/films/byGenre", "POST", {
-      genre: "Комедии",
+      genre: genre,
     });
 
-    console.log(data.message);
+    setFilms(JSON.parse(data.films));
   };
-  */
 
   function selectCategory(id) {
     setCategories(
       categories.map((category) => {
-        category.selected = category.id === id;
+        if (category.id === id) {
+          category.selected = true;
+          getFilms(category.name);
+        } else {
+          category.selected = false;
+        }
         return category;
       })
     );
@@ -58,8 +77,19 @@ export const MainPage = () => {
             {categories.length ? (
               <CategoriesList categories={categories} />
             ) : (
-              <p>No items</p>
+              <p>Не найдено ни одной категории</p>
             )}
+          </div>
+
+          <div className="filmsWrapper">
+            {films.map((film) => {
+              return (
+                <>
+                  {film.name}
+                  <hr />
+                </>
+              );
+            })}
           </div>
         </>
       </CategoriesContext.Provider>
