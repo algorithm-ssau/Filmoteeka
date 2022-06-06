@@ -21,9 +21,11 @@ app.get("/*", (req, res) => {
 
 async function start() {
   try {
+    /*
     await mongoose.connect(mongoUri, {
       useNewUrlParser: true,
     });
+    */
     app.listen(PORT, () => {
       console.log(`App has started on port ${PORT}...`);
     });
