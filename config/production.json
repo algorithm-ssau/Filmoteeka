@@ -1,4 +1,4 @@
 {
-  "mongoUri": "mongodb://127.0.0.1:27017",
+  "mongoUri": "mongodb+srv://aleksey:gEoYjnMARU3zLyiN@cluster0.q8ftm.mongodb.net/?retryWrites=true&w=majority",
   "jwtSecret": "FILMOTEEKA"
 }
