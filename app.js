@@ -21,11 +21,13 @@ app.get("/*", (req, res) => {
 
 async function start() {
   try {
-    /*
-    await mongoose.connect(mongoUri, {
-      useNewUrlParser: true,
-    });
-    */
+    await mongoose.connect(
+      "mongodb+srv://aleksey:gEoYjnMARU3zLyiN@cluster0.q8ftm.mongodb.net/?retryWrites=true&w=majority ",
+      {
+        useNewUrlParser: true,
+      }
+    );
+
     app.listen(PORT, () => {
       console.log(`App has started on port ${PORT}...`);
     });

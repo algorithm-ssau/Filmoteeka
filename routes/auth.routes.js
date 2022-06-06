@@ -6,7 +6,6 @@ const jwt = require("jsonwebtoken");
 const router = Router();
 
 router.post("/register", async (req, res) => {
-  /*
   try {
     const { login, password } = req.body;
 
@@ -27,12 +26,9 @@ router.post("/register", async (req, res) => {
       message: "Ошибка сервера при регистрации",
     });
   }
-  */
-  res.status(201).json({ message: "Пользователь создан" });
 });
 
 router.post("/login", async (req, res) => {
-  /*
   try {
     const { login, password } = req.body;
 
@@ -60,8 +56,6 @@ router.post("/login", async (req, res) => {
   } catch (e) {
     res.status(500).json({ message: "Ошибка сервера при входе" });
   }
-  */
-  res.status(500).json({ message: "Ошибка сервера при входе" });
 });
 
 module.exports = router;

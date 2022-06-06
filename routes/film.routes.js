@@ -6,7 +6,6 @@ const config = require("config");
 const router = Router();
 
 router.post("/byGenre", async (req, res) => {
-  /*
   try {
     const { genre } = req.body;
 
@@ -18,13 +17,10 @@ router.post("/byGenre", async (req, res) => {
       .status(500)
       .json({ message: "Ошибка при получении информации о фильмах" });
   }
-  */
-  res.status(200).json({ message: msg, films: [] });
 });
 
 //router.get("/byName", auth, async (req, res) => {
 router.post("/byName", async (req, res) => {
-  /*
   try {
     const { name } = req.body;
     console.log(`searching for film by name: ${name}`);
@@ -46,10 +42,6 @@ router.post("/byName", async (req, res) => {
       .status(500)
       .json({ message: "Ошибка при получении информации о фильме" });
   }
-  */
-  return res
-    .status(400)
-    .json({ message: "Не найдено фильма с таким названием" });
 });
 
 module.exports = router;
